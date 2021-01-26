@@ -1,0 +1,34 @@
+{
+  "name": "shopify-auth-node",
+  "version": "1.0.0",
+  "description": "package to handle shopify authentication with one function call",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srameshr/shopify-auth-node.git"
+  },
+  "keywords": [
+    "shopify",
+    "nodejs",
+    "shopify",
+    "auth"
+  ],
+  "author": "srameshr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/srameshr/shopify-auth-node/issues"
+  },
+  "homepage": "https://github.com/srameshr/shopify-auth-node#readme",
+  "dependencies": {
+    "cookie": "^0.4.1",
+    "crypto": "^1.0.1",
+    "nonce": "^1.0.4",
+    "querystring": "^0.2.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "shopify-token": "^4.0.0"
+  }
+}
