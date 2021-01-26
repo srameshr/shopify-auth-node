@@ -48,10 +48,7 @@ module.exports = {
 		shopifyApiKey,
 		shopifyApiSecret,
 		shopifyAppUri,
-		dashboardRedirectUri,
-		shopifyCookie = {
-			path: '/', domain: '', httpOnly: true, secure: true,
-		}
+		successCallBack,
 	}) {
 		const redirectUri = shopifyAppUri + SHOPIFY_OAUTH_PATH + '/callback';
 		app.get(SHOPIFY_OAUTH_PATH, (req, res) => {
@@ -97,14 +94,10 @@ module.exports = {
 				request.post(accessTokenRequestUrl, { json: accessTokenPayload })
 					.then((accessTokenResponse) => {
 						const accessToken = accessTokenResponse.access_token;
-						const {
-							path, domain, httpOnly, secure,
-						} = shopifyCookie;
-						console.log(accessToken)
-						res.cookie('ShopifyAccessToken', accessToken, { path, domain, httpOnly, secure })
-						res.cookie('ShopifyShop', shop, { path, domain, httpOnly, secure })
-						res.redirect(dashboardRedirectUri);
-
+						successCallBack({
+							accessToken,
+							shop,
+						});
 					})
 					.catch((error) => {
 						res.status(error.statusCode).send(error.error.error_description);
