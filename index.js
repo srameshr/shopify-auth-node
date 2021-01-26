@@ -97,6 +97,8 @@ module.exports = {
 						successCallBack({
 							accessToken,
 							shop,
+							res,
+							req,
 						});
 					})
 					.catch((error) => {
