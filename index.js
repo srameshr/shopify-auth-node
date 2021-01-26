@@ -100,7 +100,8 @@ module.exports = {
 						});
 					})
 					.catch((error) => {
-						res.status(error.statusCode).send(error.error.error_description);
+						console.error(error)
+						res.status(error.statusCode).send(error.error);
 					});
 
 			} else {
