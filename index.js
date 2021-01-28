@@ -133,8 +133,5 @@ module.exports = {
 		app.post(SHOPIFY_WEBHOOK_GDPR_CUSTOMERS_REDACT, handleGDPR);
 		app.post(SHOPIFY_WEBHOOK_GDPR_CUSTOMERS_DATA_REQUEST, handleGDPR);
 		app.post(SHOPIFY_WEBHOOK_GDPR_SHOP_REDACT, handleGDPR);
-		app.get(SHOPIFY_WEBHOOK_APP_UNISTALLED, (req, res) => {
-			// Script tags get deleted automatically after app is uninstalled
-		});
 	}
 }
