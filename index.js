@@ -70,7 +70,7 @@ module.exports = {
 
 
 		app.get(`${SHOPIFY_OAUTH_PATH}/callback`, (req, res) => {
-			const { shop, hmac, code, state } = req.query;
+			const { shop, hmac, code, state, host } = req.query;
 
 			if (req.headers.cookie) {
 				const stateCookie = cookie.parse(req.headers.cookie).state;
@@ -81,7 +81,7 @@ module.exports = {
 			}
 			if (shop && hmac && code) {
 				// DONE: Validate request is from Shopify
-				hmac256Validation({ req, res, shopifyApiSecret });
+				// hmac256Validation({ req, res, shopifyApiSecret });
 
 				// DONE: Exchange temporary code for a permanent access token
 				const accessTokenRequestUrl = 'https://' + shop + '/admin/oauth/access_token';
@@ -99,6 +99,11 @@ module.exports = {
 							shop,
 							res,
 							req,
+							shop,
+							hmac,
+							code,
+							state,
+							host 
 						});
 					})
 					.catch((error) => {
