@@ -8,10 +8,6 @@ const querystring = require('querystring');
 
 const SHOPIFY_OAUTH_PATH = '/shopify';
 const SHOPIFY_LOGIN_PATH = '/shopify/login'
-const SHOPIFY_WEBHOOK_GDPR_CUSTOMERS_REDACT = '/shopify/webhooks/customers/redact';
-const SHOPIFY_WEBHOOK_GDPR_SHOP_REDACT =  '/shopify/webhooks/shop/redact';
-const SHOPIFY_WEBHOOK_GDPR_CUSTOMERS_DATA_REQUEST = '/shopify/webhooks/customers/data_request';
-const SHOPIFY_WEBHOOK_APP_UNISTALLED = '/shopify/webhooks/app/uninstalled';
 
 
 const hmac256Validation = ({ req, res, shopifyApiSecret }) => {
@@ -130,13 +126,5 @@ module.exports = {
 				res.redirect(302, storeLoginURL);
 			}
 		})
-
-		const handleGDPR = (req, res) => {
-			fs.appendFile('gdpr-requests.txt', `${JSON.stringify(req.body)}\n`, () => null);
-			res.sendStatus(200);
-		}
-		app.post(SHOPIFY_WEBHOOK_GDPR_CUSTOMERS_REDACT, handleGDPR);
-		app.post(SHOPIFY_WEBHOOK_GDPR_CUSTOMERS_DATA_REQUEST, handleGDPR);
-		app.post(SHOPIFY_WEBHOOK_GDPR_SHOP_REDACT, handleGDPR);
 	}
 }
